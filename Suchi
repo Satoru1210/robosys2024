@@ -20,22 +20,14 @@ def read_numbers_from_file(file_path):
                         print(f"無効な入力: '{line}' は数値ではありません。", file=sys.stderr)
     except FileNotFoundError:
         print(f"ファイルが見つかりません: {file_path}", file=sys.stderr)
+    except Exception as e:
+        print(f"エラーが発生しました: {e}", file=sys.stderr)
     return nums
 
 def main():
     nums = []
 
-    # 標準入力から数値を読み取る
-    for line in sys.stdin:
-        line = line.strip()
-        if line:
-            try:
-                num = float(line)
-                nums.append(num)
-            except ValueError:
-                print(f"無効な入力: '{line}' は数値ではありません。", file=sys.stderr)
-
-    # numファイルが存在すれば、それも読み取る
+    # numファイルが存在すれば、それを読み取る
     nums.extend(read_numbers_from_file("num"))
 
     if not nums:
