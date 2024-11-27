@@ -1,5 +1,6 @@
 # robosys2024
 # Suchi - 数値統計ツール
+[![test](https://github.com/Satoru1210/robosys2024/actions/workflows/test.yml/badge.svg)](https://github.com/Satoru1210/robosys2024/actions/workflows/test.yml)
 
 ## 概要
 `Suchi`は、標準入力またはファイルから数値データを受け取り、統計情報（平均、中央値、標準偏差、分散）を計算して出力するコマンドラインツールです。
