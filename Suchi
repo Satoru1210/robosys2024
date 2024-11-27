@@ -9,6 +9,7 @@ import statistics
 def main():
     try:
         # 入力値を読み取る
+        print("数値を入力する場合は改行で区切る、Ctrl+Dで終了", file=sys.stderr)
         nums = []
         for line in sys.stdin:
             line = line.strip()
