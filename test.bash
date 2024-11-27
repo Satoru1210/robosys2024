@@ -8,18 +8,23 @@ ng () {
 }
 
 res=0
+# 正しい入力
+out=$(echo -e "10\n20\n30\n40\n50" | ./Suchi)
+expected="平均: 30.0
+中央値: 30.0
+標準偏差: 15.811388300841896
+分散: 250.0"
+[ "${out}" = "${expected}" ] || ng "$LINENO"
 
-out=$(seq 5 | ./plus)
-[ "${out}" = 15 ] || ng "$LINENO"
-### STRANGE INPUT ###
-out=$(echo あ | ./plus)
+# 異常な入力（文字列）
+out=$(echo あ | ./Suchi)
 [ "$?" = 1 ]     || ng "$LINENO"
 [ "${out}" = "" ] || ng "$LINENO"
 
-out=$(echo | ./plus)
+# 空の入力
+out=$(echo | ./Suchi)
 [ "$?" = 1 ]     || ng "$LINENO"
 [ "${out}" = "" ] || ng "$LINENO"
 
-[ "$res" = 0 ] && echo OK
+[ "$res" = 0 ] && echo "全てのテストが成功しました！"
 exit $res
-
