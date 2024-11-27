@@ -18,10 +18,10 @@
   - Python 3.8.10 以上
 
 ## インストール
-```bash
+```
 $ git clone git@github.com:Satoru1210/robosys2024.git
 $ cd robosys2024/
-
+```
 ## Githubアカウントがない場合は、HTTPS経由でクローンします
 ```
 $ git clone https://github.com/Satoru1210/robosys2024.git
