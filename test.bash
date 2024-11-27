@@ -8,6 +8,22 @@ ng () {
 }
 
 res=0
+### `plus` コマンドのテスト ###
+# 正しい入力
+out=$(seq 5 | ./plus)
+[ "${out}" = 15 ] || ng "$LINENO"
+
+# 異常な入力（文字列）
+out=$(echo あ | ./plus)
+[ "$?" = 1 ]     || ng "$LINENO"
+[ "${out}" = "" ] || ng "$LINENO"
+
+# 空の入力
+out=$(echo | ./plus)
+[ "$?" = 1 ]     || ng "$LINENO"
+["${out}" = "" ] || ng "$LINENO"
+
+###`Suchi`###
 # 正しい入力
 out=$(echo -e "10\n20\n30\n40\n50" | ./Suchi)
 expected="平均: 30.0
