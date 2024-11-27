@@ -1,13 +1,14 @@
 #!/bin/bash -xv
-# SPDX-FileCopyrightText: 2024 Satoru Homma 　　　　　
+# SPDX-FileCopyrightText: 2024 Satoru Homma
 # SPDX-License-Identifier: BSD-3-Clause
 
 ng () {
-	echo ${1}行目が違うよ
-	res=1
+    echo ${1}行目が違うよ
+    res=1
 }
 
 res=0
+
 ### `plus` コマンドのテスト ###
 # 正しい入力
 out=$(seq 5 | ./plus)
@@ -21,16 +22,16 @@ out=$(echo あ | ./plus)
 # 空の入力
 out=$(echo | ./plus)
 [ "$?" = 1 ]     || ng "$LINENO"
-["${out}" = "" ] || ng "$LINENO"
+[ "${out}" = "" ] || ng "$LINENO"
 
-###`Suchi`###
+### `Suchi` コマンドのテスト ###
 # 正しい入力
 out=$(echo -e "10\n20\n30\n40\n50" | ./Suchi)
 expected="平均: 30.0
 中央値: 30.0
 標準偏差: 15.811388300841896
 分散: 250.0"
-[ "${out}" = "${expected}" ] || ng "$LINENO"
+[ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
 
 # 異常な入力（文字列）
 out=$(echo あ | ./Suchi)
@@ -44,3 +45,4 @@ out=$(echo | ./Suchi)
 
 [ "$res" = 0 ] && echo "全てのテストが成功しました！"
 exit $res
+

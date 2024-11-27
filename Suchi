@@ -1,51 +1,46 @@
 #!/usr/bin/python3
 # SPDX-FileCopyrightText: 2024 Satoru Homma
 # SPDX-License-Identifier: BSD-3-Clause
+#!/usr/bin/env python3
 
 import sys
 import statistics
 
-def read_numbers_from_file(file_path):
-    """指定されたファイルから数値を読み取る"""
-    nums = []
-    try:
-        with open(file_path, 'r') as file:
-            for line in file:
-                line = line.strip()
-                if line:
-                    try:
-                        num = float(line)  # float型で数値を解析
-                        nums.append(num)
-                    except ValueError:
-                        print(f"無効な入力: '{line}' は数値ではありません。", file=sys.stderr)
-    except FileNotFoundError:
-        print(f"ファイルが見つかりません: {file_path}", file=sys.stderr)
-    except Exception as e:
-        print(f"エラーが発生しました: {e}", file=sys.stderr)
-    return nums
-
 def main():
-    nums = []
+    try:
+        # 入力値を読み取る
+        nums = []
+        for line in sys.stdin:
+            line = line.strip()
+            if line:
+                try:
+                    num = float(line)  # 数値に変換
+                    nums.append(num)
+                except ValueError:
+                    print(f"無効な入力: {line}", file=sys.stderr)
+                    sys.exit(1)  # 異常終了
 
-    # numファイルが存在すれば、それを読み取る
-    nums.extend(read_numbers_from_file("num"))
+        # 入力値が空の場合
+        if not nums:
+            print("エラー: 入力が空です", file=sys.stderr)
+            sys.exit(1)
 
-    if not nums:
-        print("数値が入力されていません。", file=sys.stderr)
-        return
+        # 元のデータは保持したまま、統計情報を計算
+        mean = statistics.mean(nums)
+        median = statistics.median(nums)
+        stdev = statistics.stdev(nums) if len(nums) > 1 else 0
+        variance = statistics.variance(nums) if len(nums) > 1 else 0
 
-    # 数値の統計情報を計算
-    mean = statistics.mean(nums)
-    median = statistics.median(nums)
-    stdev = statistics.stdev(nums) if len(nums) > 1 else 0  # 標本標準偏差
-    variance = statistics.variance(nums) if len(nums) > 1 else 0  # 標本分散
+        # 結果を出力
+        print(f"平均: {mean}")
+        print(f"中央値: {median}")
+        print(f"標準偏差: {stdev}")
+        print(f"分散: {variance}")
 
-    # 統計情報を出力
-    print(f"平均: {mean}")
-    print(f"中央値: {median}")
-    print(f"標準偏差: {stdev}")
-    print(f"分散: {variance}")
+    except Exception as e:
+        print(f"エラー: {e}", file=sys.stderr)
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
-#Tab to Space
+
