@@ -4,8 +4,6 @@
 ## 概要
 `statsコマンド`は、標準入力またはファイルから数値データを受け取り、その**平均**、**中央値**、**標準偏差**、**分散**を計算して出力するプログラムです。
 
-[![test](https://github.com/yourusername/robosys2024/actions/workflows/test.yml/badge.svg)](https://github.com/yourusername/robosys2024/actions/workflows/test.yml)
-
 ## 機能
 - 標準入力またはファイルから数値を読み取り、float型で統計情報を計算。
 - 出力される統計情報:
