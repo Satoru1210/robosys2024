@@ -115,7 +115,7 @@ $ ./Suchi < num
 ---
 
 ## ライセンス・著作権
-- このソフトウェアは [3条項BSDライセンス](https://opensource.org/licenses/BSD-3-Clause) のの下で再頒布および使用が許可されています。
+- このソフトウェアは [3条項BSDライセンス](https://opensource.org/licenses/BSD-3-Clause) の下で再頒布および使用が許可されています。
 - **© 2024 Satoru1210**
 
 ---
