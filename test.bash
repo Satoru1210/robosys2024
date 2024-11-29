@@ -26,7 +26,7 @@ out=$(echo | ./plus)
 
 ### `Suchi` コマンドのテスト ###
 # 正しい入力
-out=$(echo -e "10\n20\n30\n40\n50" | ./Suchi)
+out=$(echo -e "10\n20\n30\n40\n50" | ./suchi)
 expected="平均: 30.0
 中央値: 30.0
 標準偏差: 15.811388300841896
@@ -34,12 +34,12 @@ expected="平均: 30.0
 [ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
 
 # 異常な入力（文字列）
-out=$(echo あ | ./Suchi)
+out=$(echo あ | ./suchi)
 [ "$?" = 1 ]     || ng "$LINENO"
 [ "${out}" = "無効な入力: {line}" ] || ng "$LINENO"
 
 # 空の入力
-out=$(echo | ./Suchi)
+out=$(echo | ./suchi)
 [ "$?" = 1 ]     || ng "$LINENO"
 [ "${out}" = "エラー: 入力が空です" ] || ng "$LINENO"
 
