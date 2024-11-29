@@ -1,9 +1,9 @@
 # robosys2024
-# Suchi - 数値統計ツール
+# suchi - 数値統計ツール
 [![test](https://github.com/Satoru1210/robosys2024/actions/workflows/test.yml/badge.svg)](https://github.com/Satoru1210/robosys2024/actions/workflows/test.yml)
 
 ## 概要
-`Suchi`は、標準入力またはファイルから数値データを受け取り、統計情報（平均、中央値、標準偏差、分散）を計算して出力するコマンドラインツールです。
+`suchi`は、標準入力またはファイルから数値データを受け取り、統計情報（平均、中央値、標準偏差、分散）を計算して出力するコマンドラインツールです。
 
 ## 機能
 - 標準入力またはファイルから数値を受け取る。
@@ -16,12 +16,12 @@
 ## 動作環境・使用ソフトウェア
 - このツールは Python で実装されており、以下の環境で動作確認済み：
   - Ubuntu 20.04
-  - Python 3.8.10 以上
+  - Python 3.8.10
 
 ## テスト環境
 - このツールは以下の環境でテスト済み
-  - Ubuntu 22.04
-  - Python 3.7 ~ 3.12
+  - Ubuntu 20.04
+  - Python 3.8.10
 ---
 
 ## インストール
@@ -38,9 +38,9 @@ $ git clone https://github.com/Satoru1210/robosys2024.git
 $ cd robosys2024/
 ```
 
-`Suchi` スクリプトを実行可能にします：
+`suchi` スクリプトを実行可能にします：
 ```
-$ chmod +x Suchi
+$ chmod +x suchi
 ```
 
 ---
@@ -50,7 +50,7 @@ $ chmod +x Suchi
 ### 標準入力を使用
 直接数値を入力する例：
 ```
-$ ./Suchi
+$ ./suchi
 数値を入力する場合は改行で区切る、Ctrl+Dで終了
 1
 2
@@ -61,7 +61,7 @@ $ ./Suchi
 
 直接数値を入力し、パイプで渡す例：
 ```
-$ echo -e "1\n2\n3\n4\n5" | ./Suchi
+$ echo -e "1\n2\n3\n4\n5" | ./suchi
 ```
 
 出力結果：
@@ -76,7 +76,7 @@ $ echo -e "1\n2\n3\n4\n5" | ./Suchi
 ### ファイルから入力
 ファイル `num` に数値（改行で区切り）を保存して使用する例：
 ```
-$ ./Suchi < num
+$ ./suchi < num
 ```
 
 ファイル `num` の内容：
@@ -109,7 +109,7 @@ $ ./Suchi < num
 2. 標準入力やファイルのフォーマットが正しいか（数値以外が含まれていないか）。
 3. スクリプトが実行可能になっているか：
    ```
-   chmod +x Suchi
+   chmod +x suchi
    ```
 
 ---
