@@ -36,12 +36,12 @@ expected="平均: 30.0
 # 異常な入力（文字列）
 out=$(echo あ | ./suchi)
 [ "$?" = 1 ]     || ng "$LINENO"
-[ "${out}" = "無効な入力: {line}" ] || ng "$LINENO"
+[ "${out}" = "" ] || ng "$LINENO"
 
 # 空の入力
 out=$(echo | ./suchi)
 [ "$?" = 1 ]     || ng "$LINENO"
-[ "${out}" = "エラー: 入力が空です" ] || ng "$LINENO"
+[ "${out}" = "" ] || ng "$LINENO"
 
 [ "$res" = 0 ] && echo "全てのテストが成功しました！"
 exit $res
