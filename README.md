@@ -1,12 +1,12 @@
 # robosys2024
-# 打率計算ツール
+# 打率計算ツール・防御率計算ツール
 [![test](https://github.com/Satoru1210/robosys2024/actions/workflows/test.yml/badge.svg)](https://github.com/Satoru1210/robosys2024/actions/workflows/test.yml)
 
 ## 概要
 `hitting_score`は、標準入力から試合データを受け取り、打率を計算して出力するコマンドラインツールです。
-
+`pitching_score`は、標準入力から試合データを受け取り、防御率を計算して出力するコマンドラインツールです。
 ## 機能
-- 標準入力のデータをもとに打率を出力、異例な試合成績だった場合監督からの一言が出力される。
+- 標準入力のデータをもとにhitting_scoreでは打率を、pitching_scoreでは防御率出力、異例な試合成績だった場合監督からの一言が出力される。
 
 ## 動作環境・使用ソフトウェア
 - このツールは Python で実装されており、以下の環境で動作確認済み：
@@ -30,7 +30,8 @@ $ git clone https://github.com/Satoru1210/robosys2024.git
 ---
 
 ## 使用方法
-
+---
+## 打率計算ツール
 ### hitting_scoreスクリプトを実行可能にします：
 ```
 $ cd robosys2024
@@ -122,7 +123,37 @@ $ echo "0,3,1,1,1" | ./hitting_score
 ```
 監督「ヒットを打ってくれ。」
 ```
+## 防御率計算ツール
+### pitching_scoreスクリプトを実行可能にします：
+```
+$ cd robosys2024
+$ chmod +x pitching_score
+```
 
+### 標準入力を使用
+通常入力例：
+下記のように左から"登板回数,自責点,登板回数の端数(1/3なら1、2/3なら2、0/3なら0)"の順で試合データを入力します。
+```
+$ echo "9,1,1" | ./pitching_score
+```
+
+出力結果：
+下記のようにその投手の防御率が出力されます。
+```
+0.964
+```
+---
+### 異例な入力
+
+「投球回数が0だった場合」例：
+```
+$ echo "0,2,0" | ./pitching_score
+```
+
+出力結果：
+```
+監督「君はそもそもベンチだぞ。」
+```
 ## トラブルシューティング
 プログラムが期待通りに動作しない場合、以下を確認してください：
 1. Python のバージョンが 3.8 以上であるか：
@@ -134,7 +165,9 @@ $ echo "0,3,1,1,1" | ./hitting_score
    ```
    chmod +x hitting_score
    ```
-
+   ```
+   chmod +x pitching_score
+   ```
 ---
 
 ## ライセンス・著作権
