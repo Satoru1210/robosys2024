@@ -24,12 +24,7 @@ def pitching_score():
     elif fractions == 0:
         pitching_innings = innings
     else :
-       print("監督「投球回数の端数が自然数じゃない。」")
-       return
-    if innings >= 0 and earned_runs >= 0:
-        era = (earned_runs * 9 * 3) / (pitching_innings * 3)
-    else :
-       print("監督「投球回数が自然数じゃない。」")
+       print("監督「投球回数の端数は３未満の自然数だ。」")
        return
 
     print(f"{round(era, 3):.3f}")
