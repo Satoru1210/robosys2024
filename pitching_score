@@ -1,0 +1,35 @@
+#!/usr/bin/python3
+# SPDX-FileCopyrightText: 2024 Satoru Homma
+# SPDX-License-Identifier: BSD-3-Clause
+
+
+import sys
+
+def pitching_score():
+    data = sys.stdin.read().strip()
+    innings, earned_runs, fractions = [int(x) for x in data.split(",")]
+
+
+    if innings == 0 and fractions == 0:
+        print("監督「君はそもそもベンチだぞ」")
+        return
+    
+    if fractions == 1:
+        pitching_innings = innings + 1 / 3
+    elif fractions == 2:
+        pitching_innings = innings + 2 / 3
+    elif fractions == 0:
+        pitching_innings = innings
+    else :
+       print("監督「投球回数の端数が自然数じゃない。」")
+       return
+    if innings >= 0 and earned_runs >= 0:
+        era = (earned_runs * 9 * 3) / (pitching_innings * 3)
+    else :
+       print("監督「投球回数が自然数じゃない。」")
+       return
+
+    print(f"{round(era, 3):.3f}")
+
+if __name__ == "__main__":
+    pitching_score()
