@@ -26,7 +26,7 @@ def pitching_score():
     else :
        print("監督「投球回数の端数は３未満の自然数だ。」")
        return
-
+    era = (earned_runs * 9 * 3) / (pitching_innings * 3)
     print(f"{round(era, 3):.3f}")
 
 if __name__ == "__main__":
