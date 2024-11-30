@@ -28,7 +28,7 @@ def hitting_score():
     elif boxes - sacrifices - walks - death == 0 and hits == 0:
         print("監督「ヒットを打ってくれ。」")
         return
-    batting_average = hits / (boxes - sacrifices - walks)
+    batting_average = hits / (boxes - sacrifices - walks - death)
 
     if batting_average > 1.0:
         print("監督「それは強すぎる」")
