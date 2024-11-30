@@ -17,7 +17,7 @@ def hitting_score():
         print("監督「打席数が安打・犠打・犠飛数と四死球数より少ない。集計ミスだろう。」")
         return
     elif boxes - sacrifices == 0 and hits == 0:
-        print("監督「全打席犠打・犠飛ですか。テクニックはありますがもっとパワーをつけましょう」")
+        print("監督「全打席犠打・犠飛ですか。テクニックはありますがもっとパワーをつけましょう。」")
         return
     elif boxes - walks == 0 and hits == 0:
         print("監督「全打席四球。とてもいい選球眼だ。」")
