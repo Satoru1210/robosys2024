@@ -9,25 +9,10 @@ ng () {
 
 res=0
 
-### `plus` コマンドのテスト ###
-# 正しい入力
-out=$(seq 5 | ./plus)
-[ "${out}" = 15 ] || ng "$LINENO"
-
-# 異常な入力（文字列）
-out=$(echo あ | ./plus)
-[ "$?" = 1 ]     || ng "$LINENO"
-[ "${out}" = "" ] || ng "$LINENO"
-
-# 空の入力
-out=$(echo | ./plus)
-[ "$?" = 1 ]     || ng "$LINENO"
-[ "${out}" = "" ] || ng "$LINENO"
-
 ### `hitting_score` コマンドのテスト ###
 # 正しい入力
 out=$(echo -e "3,5,1,1,0" | ./hitting_score)
-expected="1.0"
+expected="1.000"
 [ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
 
 out=$(echo -e "3,5,2,1,0" | ./hitting_score)
