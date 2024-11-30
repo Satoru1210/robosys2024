@@ -1,4 +1,3 @@
-# robosys2024
 # 打率計算ツール・防御率計算ツール
 [![test](https://github.com/Satoru1210/robosys2024/actions/workflows/test.yml/badge.svg)](https://github.com/Satoru1210/robosys2024/actions/workflows/test.yml)
 
