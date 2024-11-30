@@ -24,22 +24,31 @@ out=$(echo | ./plus)
 [ "$?" = 1 ]     || ng "$LINENO"
 [ "${out}" = "" ] || ng "$LINENO"
 
-### `Suchi` コマンドのテスト ###
+### `hitting_score` コマンドのテスト ###
 # 正しい入力
-out=$(echo -e "10\n20\n30\n40\n50" | ./suchi)
-expected="平均: 30.0
-中央値: 30.0
-標準偏差: 15.811388300841896
-分散: 250.0"
+out=$(echo -e "3,5,1,1" | ./hitting_score)
+expected="1.0"
+[ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
+
+out=$(echo -e "3,5,2,1" | ./hitting_score)
+expected="打席数が安打・犠打・犠飛数と四死球数より少ないです。"
+[ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
+
+out=$(echo -e "0,5,3,2" | ./hitting_score)
+expected="全打席四死球or全打席犠打・犠飛の生きる伝説です。"
+[ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
+
+out=$(echo -e "3,0,1,1" | ./hitting_score)
+expected="君はベンチ"
 [ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
 
 # 異常な入力（文字列）
-out=$(echo あ | ./suchi)
+out=$(echo あ | ./hitting_score)
 [ "$?" = 1 ]     || ng "$LINENO"
 [ "${out}" = "" ] || ng "$LINENO"
 
 # 空の入力
-out=$(echo | ./suchi)
+out=$(echo | ./hitting_score)
 [ "$?" = 1 ]     || ng "$LINENO"
 [ "${out}" = "" ] || ng "$LINENO"
 
