@@ -7,8 +7,11 @@ import sys
 
 def pitching_score():
     data = sys.stdin.read().strip()
-    innings, earned_runs, fractions = [int(x) for x in data.split(",")]
 
+    if not all(x.isdigit() for x in data.split(",")):
+        print("入力に自然数以外が含まれています")
+        return
+    innings, earned_runs, fractions = [int(x) for x in data.split(",")]
 
     if innings == 0 and fractions == 0:
         print("監督「君はそもそもベンチだぞ」")

@@ -43,6 +43,10 @@ out=$(echo "0,5,3,2,0" | ./hitting_score)
 expected="監督「ヒットを打ってくれ。」"
 [ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
 
+out=$(echo "0,5.5,3,2,あ" | ./hitting_score)
+expected="入力に自然数以外が含まれています"
+[ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
+
 # 異常な入力（文字列）
 out=$(echo あ | ./hitting_score)
 [ "$?" = 1 ]     || ng "$LINENO"
@@ -69,6 +73,10 @@ expected="監督「投球回数が自然数じゃない。」"
 
 out=$(echo  "1,2,-1" | ./pitching_score)
 expected="監督「投球回数の端数が自然数じゃない。」"
+[ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
+
+out=$(echo  "1,あ,1.5" | ./pitching_score)
+expected="入力に自然数以外が含まれています"
 [ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
 
 # 異常な入力（文字列）

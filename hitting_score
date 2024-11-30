@@ -7,6 +7,11 @@ import sys
 
 def hitting_score():
     data = sys.stdin.read().strip()
+    
+    if not all(x.isdigit() for x in data.split(",")):
+        print("入力に自然数以外が含まれています")
+        return
+
     hits, boxes, sacrifices, walks, death = [int(x) for x in data.split(",")]
     
     
