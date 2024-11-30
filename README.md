@@ -19,23 +19,23 @@ GitHub リポジトリからクローンします。
 
 ```
 $ git clone git@github.com:Satoru1210/robosys2024.git
-$ cd robosys2024/
 ```
 
 GitHub アカウントがない場合は HTTPS を使用：
 ```
 $ git clone https://github.com/Satoru1210/robosys2024.git
-$ cd robosys2024/
 ```
 
-`hitting_score` スクリプトを実行可能にします：
-```
-$ chmod +x hitting_score
-```
 
 ---
 
 ## 使用方法
+
+### hitting_scoreスクリプトを実行可能にします：
+```
+$ cd robosys2024
+$ chmod +x hitting_score
+```
 
 ### 標準入力を使用
 通常入力例：
