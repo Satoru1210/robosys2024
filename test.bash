@@ -15,6 +15,10 @@ out=$(echo -e "3,5,1,1,0" | ./hitting_score)
 expected="1.000"
 [ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
 
+out=$(echo -e "6,5,0,0,0" | ./hitting_score)
+expected="監督「それは強すぎる」"
+[ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
+
 out=$(echo -e "3,5,2,1,0" | ./hitting_score)
 expected="監督「打席数が安打・犠打・犠飛数と四死球数より少ない。集計ミスだろう。」"
 [ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
