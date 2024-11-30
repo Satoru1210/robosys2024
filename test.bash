@@ -26,20 +26,32 @@ out=$(echo | ./plus)
 
 ### `hitting_score` コマンドのテスト ###
 # 正しい入力
-out=$(echo -e "3,5,1,1" | ./hitting_score)
+out=$(echo -e "3,5,1,1,0" | ./hitting_score)
 expected="1.0"
 [ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
 
-out=$(echo -e "3,5,2,1" | ./hitting_score)
-expected="打席数が安打・犠打・犠飛数と四死球数より少ないです。"
+out=$(echo -e "3,5,2,1,0" | ./hitting_score)
+expected="監督「打席数が安打・犠打・犠飛数と四死球数より少ない。集計ミスだろう。」"
 [ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
 
-out=$(echo -e "0,5,3,2" | ./hitting_score)
-expected="全打席四死球or全打席犠打・犠飛の生きる伝説です。"
+out=$(echo -e "0,5,5,0,0" | ./hitting_score)
+expected="監督「全打席犠打・犠飛ですか。テクニックはありますがもっとパワーをつけましょう。」"
 [ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
 
-out=$(echo -e "3,0,1,1" | ./hitting_score)
-expected="君はベンチ"
+out=$(echo -e "0,5,0,5,0" | ./hitting_score)
+expected="監督「全打席四球。とてもいい選球眼だ。」"
+[ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
+
+out=$(echo -e "0,5,0,0,5" | ./hitting_score)
+expected="監督「全打席死球。ドンマイ。」"
+[ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
+
+out=$(echo -e "3,0,1,1,1" | ./hitting_score)
+expected="監督「君はそもそもベンチだぞ」"
+[ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
+
+out=$(echo -e "0,5,3,2,0" | ./hitting_score)
+expected="監督「ヒットを打ってくれ。」"
 [ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
 
 # 異常な入力（文字列）

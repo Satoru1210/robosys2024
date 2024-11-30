@@ -7,22 +7,31 @@ import sys
 
 def hitting_score():
     data = sys.stdin.read().strip()
-    hits, boxes, sacrifices, walks = [int(x) for x in data.split(",")]
+    hits, boxes, sacrifices, walks, death = [int(x) for x in data.split(",")]
+    
     
     if boxes == 0:
-        print("君はベンチ")
+        print("監督「君はそもそもベンチだぞ」")
         return
-    elif boxes < hits + sacrifices + walks:
-        print("打席数が安打・犠打・犠飛数と四死球数より少ないです。")
+    elif boxes < hits + sacrifices + walks + death:
+        print("監督「打席数が安打・犠打・犠飛数と四死球数より少ない。集計ミスだろう。」")
         return
-    elif boxes - sacrifices - walks == 0 and hits == 0:
-        print("全打席四死球or全打席犠打・犠飛の生きる伝説です。")
+    elif boxes - sacrifices == 0 and hits == 0:
+        print("監督「全打席犠打・犠飛ですか。テクニックはありますがもっとパワーをつけましょう」")
         return
-    
+    elif boxes - walks == 0 and hits == 0:
+        print("監督「全打席四球。とてもいい選球眼だ。」")
+        return
+    elif boxes - death == 0 and hits == 0:
+        print("監督「全打席死球。ドンマイ。」")
+        return
+    elif boxes - sacrifices - walks - death == 0 and hits == 0:
+        print("監督「ヒットを打ってくれ。」")
+        return
     batting_average = hits / (boxes - sacrifices - walks)
 
     if batting_average > 1.0:
-        print("それは強すぎる")
+        print("監督「それは強すぎる」")
         return
     print(f"{batting_average:.3f}")
 
