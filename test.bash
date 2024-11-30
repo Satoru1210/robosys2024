@@ -49,14 +49,14 @@ expected="入力に自然数以外が含まれています"
 
 # 異常な入力（文字列）
 out=$(echo あ | ./hitting_score)
-[ "$?" = 1 ]     || ng "$LINENO"
-[ "${out}" = "" ] || ng "$LINENO"
+expected="入力に自然数以外が含まれています"
+[ "${out}" = "${expected}" ] || ng "$LINENO"
 
 # 空の入力
 out=$(echo | ./hitting_score)
-[ "$?" = 1 ]     || ng "$LINENO"
-[ "${out}" = "" ] || ng "$LINENO"
+expected="入力に自然数以外が含まれています"
 
+[ "${out}" = "${expected}" ] || ng "$LINENO"
 ### `pitching_score` コマンドのテスト ###
 # 正しい入力
 out=$(echo "9,1,1" | ./pitching_score)
@@ -78,13 +78,13 @@ expected="監督「投球回数の端数は３未満の自然数だ。」"
 
 # 異常な入力（文字列）
 out=$(echo あ | ./pitching_score)
-[ "$?" = 1 ]     || ng "$LINENO"
-[ "${out}" = "" ] || ng "$LINENO"
+expected="入力に自然数以外が含まれています"
+[ "${out}" = "${expected}" ] || ng "$LINENO"
 
 # 空の入力
 out=$(echo | ./pitching_score)
-[ "$?" = 1 ]     || ng "$LINENO"
-[ "${out}" = "" ] || ng "$LINENO"
+expected="入力に自然数以外が含まれています"
+[ "${out}" = "${expected}" ] || ng "$LINENO"
 
 [ "$res" = 0 ] && echo "全てのテストが成功しました！"
 exit $res
