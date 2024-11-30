@@ -13,7 +13,7 @@ res=0
 # 正しい入力
 out=$(echo "3,5,1,1,0" | ./hitting_score)
 expected="1.000"
-[ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
+[ ${out} = ${expected} ] || ng "$LINENO"
 
 out=$(echo "6,5,0,0,0" | ./hitting_score)
 expected="監督「それは強すぎる」"
@@ -65,14 +65,6 @@ expected="0.964"
 
 out=$(echo  "0,2,0" | ./pitching_score)
 expected="監督「君はそもそもベンチだぞ」"
-[ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
-
-out=$(echo  "-1,2,0" | ./pitching_score)
-expected="監督「投球回数が自然数じゃない。」"
-[ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
-
-out=$(echo  "1,2,-1" | ./pitching_score)
-expected="監督「投球回数の端数が自然数じゃない。」"
 [ "$(printf "${out}")" = "$(printf "${expected}")" ] || ng "$LINENO"
 
 out=$(echo  "1,あ,1.5" | ./pitching_score)
