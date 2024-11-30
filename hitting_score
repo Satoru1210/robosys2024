@@ -13,7 +13,7 @@ def hitting_score():
     if boxes == 0:
         print("監督「君はそもそもベンチだぞ」")
         return
-    elif boxes < hits + sacrifices + walks + death:
+    elif boxes < hits + sacrifices + walks + death and (sacrifices != 0 or walks != 0 or death != 0):
         print("監督「打席数が安打・犠打・犠飛数と四死球数より少ない。集計ミスだろう。」")
         return
     elif boxes - sacrifices == 0 and hits == 0:
@@ -30,7 +30,7 @@ def hitting_score():
         return
     batting_average = hits / (boxes - sacrifices - walks - death)
 
-    if batting_average > 1.0:
+    if batting_average > 1.0 and sacrifices == 0 and walks == 0 and death == 0:
         print("監督「それは強すぎる」")
         return
     print(f"{batting_average:.3f}")
