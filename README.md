@@ -42,7 +42,7 @@ $ chmod +x hitting_score
 通常入力例：
 下記のように左から"打席数 安打数 犠打・犠飛数 四球数 死球数"の順で空白区切りで試合データを入力します。
 ```
-$ echo "5 3 1 1 0" | ./hitting_score
+$ echo 5 3 1 1 0 | ./hitting_score
 ```
 
 出力結果：
@@ -63,7 +63,7 @@ $ chmod +x pitching_score
 通常入力例：
 下記のように左から"登板回数 自責点 登板回数の端数(1/3なら1、2/3なら2、0/3なら0)"の順で空白区切りで試合データを入力します。
 ```
-$ echo "9 1 1" | ./pitching_score
+$ echo 9 1 1 | ./pitching_score
 ```
 
 出力結果：
