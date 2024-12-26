@@ -24,9 +24,6 @@ def hitting_score():
 
     batting_average = hits / (boxes - sacrifices - walks - death)
 
-    if batting_average > 1.0:
-        print("打率が異常値です。")
-        sys.exit(1)
 
     print(f"{batting_average:.3f}")
 

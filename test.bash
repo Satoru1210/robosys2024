@@ -10,24 +10,19 @@ ng () {
 res=0
 
 ### hitting_score コマンドのテスト ###
-# 異常な入力（打席数が安打・犠打・犠飛数と四死球数より少ない、打席数がゼロ）
-out=$(echo "6 5 0 0 0" | ./hitting_score)
-expected="0.833"
-[ "$?" = 1 ] || ng "$LINENO"
-[ "${out}" = "${expected}" ] || ng "$LINENO"
-
+# 異常な入力
 out=$(echo "3 5 2 1 0" | ./hitting_score)
 expected="打席数が安打・犠打・犠飛数と四死球数より少ないです。"
 [ "$?" = 1 ] || ng "$LINENO"
 [ "${out}" = "${expected}" ] || ng "$LINENO"
 
-# 異常な入力（空白区切りの自然数以外）
-out=$(echo "0 5 5 3 あ" | ./hitting_score)
-expected="入力が不正です。空白区切りの自然数を5つ入力してください。"
+
+out=$(echo "0 5 5 3 0" | ./hitting_score)
+expected="打席数がゼロです。"
 [ "$?" = 1 ] || ng "$LINENO"
 [ "${out}" = "${expected}" ] || ng "$LINENO"
 
-# 異常な入力（文字列）
+
 out=$(echo あ | ./hitting_score)
 expected="入力が不正です。空白区切りの自然数を5つ入力してください。"
 [ "$?" = 1 ] || ng "$LINENO"
@@ -40,25 +35,24 @@ expected="入力が不正です。空白区切りの自然数を5つ入力して
 [ "${out}" = "${expected}" ] || ng "$LINENO"
 
 ### pitching_score コマンドのテスト ###
-# 異常な入力（空白区切りの自然数以外）
+# 異常な入力
 out=$(echo "1 あ 1" | ./pitching_score)
 expected="入力が不正です。空白区切りの自然数を3つ入力してください。"
 [ "$?" = 1 ] || ng "$LINENO"
 [ "${out}" = "${expected}" ] || ng "$LINENO"
 
-# 異常な入力（端数が不正）
 out=$(echo "1 2 3" | ./pitching_score)
 expected="投球回数の端数は0, 1, 2のいずれかにしてください。"
 [ "$?" = 1 ] || ng "$LINENO"
 [ "${out}" = "${expected}" ] || ng "$LINENO"
 
-# 異常な入力（投球回数がゼロ）
+
 out=$(echo  "0 2 0" | ./pitching_score)
 expected="投球回数がゼロです。"
 [ "$?" = 1 ] || ng "$LINENO"
 [ "${out}" = "${expected}" ] || ng "$LINENO"
 
-# 異常な入力（文字列）
+
 out=$(echo あ | ./pitching_score)
 expected="入力が不正です。空白区切りの自然数を3つ入力してください。"
 [ "$?" = 1 ] || ng "$LINENO"
