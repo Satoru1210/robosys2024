@@ -2,32 +2,39 @@
 # SPDX-FileCopyrightText: 2024 Satoru Homma
 # SPDX-License-Identifier: BSD-3-Clause
 
-
 import sys
 
 def pitching_score():
     data = sys.stdin.read().strip()
+    parts = data.split()
 
-    if not all(x.isdigit() for x in data.split(",")):
-        print("入力に自然数以外が含まれています")
-        return
-    innings, earned_runs, fractions = [int(x) for x in data.split(",")]
+    if len(parts) != 3 or not all(part.isdigit() for part in parts):
+        print("入力が不正です。空白区切りの自然数を3つ入力してください。")
+        sys.exit(1)
+
+    innings, earned_runs, fractions = [int(part) for part in parts]
 
     if innings == 0 and fractions == 0:
-        print("監督「君はそもそもベンチだぞ」")
-        return
-    
+        print("投球回数がゼロです。")
+        sys.exit(1)
+
     if fractions == 1:
         pitching_innings = innings + 1 / 3
     elif fractions == 2:
         pitching_innings = innings + 2 / 3
     elif fractions == 0:
         pitching_innings = innings
-    else :
-       print("監督「投球回数の端数は３未満の自然数だ。」")
-       return
-    era = (earned_runs * 9 * 3) / (pitching_innings * 3)
+    else:
+        print("投球回数の端数は0, 1, 2のいずれかにしてください。")
+        sys.exit(1)
+
+    if pitching_innings == 0:
+        print("投球回数がゼロです。")
+        sys.exit(1)
+
+    era = (earned_runs * 9) / pitching_innings
     print(f"{round(era, 3):.3f}")
 
 if __name__ == "__main__":
     pitching_score()
+

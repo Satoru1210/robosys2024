@@ -2,43 +2,34 @@
 # SPDX-FileCopyrightText: 2024 Satoru Homma
 # SPDX-License-Identifier: BSD-3-Clause
 
-
 import sys
 
 def hitting_score():
     data = sys.stdin.read().strip()
-    
-    if not all(x.isdigit() for x in data.split(",")):
-        print("入力に自然数以外が含まれています")
-        return
+    parts = data.split()
 
-    hits, boxes, sacrifices, walks, death = [int(x) for x in data.split(",")]
-    
-    
+    if len(parts) != 5 or not all(part.isdigit() for part in parts):
+        print("入力が不正です。空白区切りの自然数を5つ入力してください。")
+        sys.exit(1)
+
+    boxes, hits, sacrifices, walks, death = [int(part) for part in parts]
+
     if boxes == 0:
-        print("監督「君はそもそもベンチだぞ」")
-        return
-    elif boxes < hits + sacrifices + walks + death and (sacrifices != 0 or walks != 0 or death != 0):
-        print("監督「打席数が安打・犠打・犠飛数と四死球数より少ない。集計ミスだろう。」")
-        return
-    elif boxes - sacrifices == 0 and hits == 0:
-        print("監督「全打席犠打・犠飛ですか。テクニックはありますがもっとパワーをつけましょう。」")
-        return
-    elif boxes - walks == 0 and hits == 0:
-        print("監督「全打席四球。とてもいい選球眼だ。」")
-        return
-    elif boxes - death == 0 and hits == 0:
-        print("監督「全打席死球。ドンマイ。」")
-        return
-    elif boxes - sacrifices - walks - death == 0 and hits == 0:
-        print("監督「ヒットを打ってくれ。」")
-        return
+        print("打席数がゼロです。")
+        sys.exit(1)
+
+    if boxes < hits + sacrifices + walks + death:
+        print("打席数が安打・犠打・犠飛数と四死球数より少ないです。")
+        sys.exit(1)
+
     batting_average = hits / (boxes - sacrifices - walks - death)
 
-    if batting_average > 1.0 and sacrifices == 0 and walks == 0 and death == 0:
-        print("監督「それは強すぎる」")
-        return
+    if batting_average > 1.0:
+        print("打率が異常値です。")
+        sys.exit(1)
+
     print(f"{batting_average:.3f}")
 
 if __name__ == "__main__":
     hitting_score()
+
