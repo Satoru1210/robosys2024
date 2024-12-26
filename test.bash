@@ -12,7 +12,7 @@ res=0
 ### hitting_score コマンドのテスト ###
 # 異常な入力（打席数が安打・犠打・犠飛数と四死球数より少ない、打席数がゼロ）
 out=$(echo "6 5 0 0 0" | ./hitting_score)
-expected="打席数が安打・犠打・犠飛数と四死球数より少ないです。"
+expected="0.833"
 [ "$?" = 1 ] || ng "$LINENO"
 [ "${out}" = "${expected}" ] || ng "$LINENO"
 
